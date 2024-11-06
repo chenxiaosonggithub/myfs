@@ -1,0 +1,42 @@
+From 6b663a907974d23b505f16d1690417e4f2f46ffa Mon Sep 17 00:00:00 2001
+From: ChenXiaoSong <chenxiaosong@kylinos.cn>
+Date: Wed, 6 Nov 2024 12:15:05 +0000
+Subject: [PATCH] add support for myfs
+
+Signed-off-by: ChenXiaoSong <chenxiaosong@kylinos.cn>
+---
+ fs/Kconfig  | 2 ++
+ fs/Makefile | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/fs/Kconfig b/fs/Kconfig
+index aae170fc2795..72aa93983c6c 100644
+--- a/fs/Kconfig
++++ b/fs/Kconfig
+@@ -32,6 +32,8 @@ config LEGACY_DIRECT_IO
+ 
+ if BLOCK
+ 
++source "fs/myfs/Kconfig"
++
+ source "fs/ext2/Kconfig"
+ source "fs/ext4/Kconfig"
+ source "fs/jbd2/Kconfig"
+diff --git a/fs/Makefile b/fs/Makefile
+index 61679fd587b7..d36f89d90e0f 100644
+--- a/fs/Makefile
++++ b/fs/Makefile
+@@ -58,8 +58,9 @@ obj-$(CONFIG_CONFIGFS_FS)	+= configfs/
+ obj-y				+= devpts/
+ 
+ obj-$(CONFIG_DLM)		+= dlm/
+- 
++
+ # Do not add any filesystems before this line
++obj-$(CONFIG_MYFS)		+= myfs/
+ obj-$(CONFIG_NETFS_SUPPORT)	+= netfs/
+ obj-$(CONFIG_REISERFS_FS)	+= reiserfs/
+ obj-$(CONFIG_EXT4_FS)		+= ext4/
+-- 
+2.34.1
+

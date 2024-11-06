@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+#
+# Makefile for the my-filesystem.
+
+obj-$(CONFIG_MYFS) += myfs.o
+
+myfs-y := super.o
+

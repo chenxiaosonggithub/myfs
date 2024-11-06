@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: GPL-2.0-only
+config MYFS
+	tristate "my fs support"
+	select BUFFER_HEAD
+	select FS_IOMAP
+	help
+	  Myfs is a standard Linux file system.
+
+	  Just for fun.
+
+	  If unsure, say N.
