@@ -18,7 +18,21 @@
 static int myfs_fill_super(struct super_block *sb, void *data, int silent)
 {
 	int ret = 0;
+	struct inode *root;
 
+	root = myfs_iget(sb, MYFS_ROOT_INO);
+	if (IS_ERR(root)) {
+		ret = PTR_ERR(root);
+		goto err;
+	}
+
+	sb->s_root = d_make_root(root);
+	if (!sb->s_root) {
+		printk("%s:%d, error: get root inode failed", __func__, __LINE__);
+		ret = -ENOMEM;
+		goto err;
+	}
+err:
 	return ret;
 }
 

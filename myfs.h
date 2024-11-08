@@ -17,6 +17,12 @@
 
 #include <linux/fs.h>
 
+/*
+ * Special inode numbers
+ */
+#define	MYFS_BAD_INO		 1	/* Bad blocks inode */
+#define	MYFS_ROOT_INO		 2	/* Root inode */
+
 extern int myfs_debug_types;
 
 #define MYFS_DEBUG_MAIN		BIT(0)
@@ -33,5 +39,7 @@ extern int myfs_debug_types;
 
 
 extern struct file_system_type myfs_fs_type;
+
+extern struct inode *myfs_iget(struct super_block *sb, unsigned long ino);
 
 #endif
