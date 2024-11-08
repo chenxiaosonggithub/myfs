@@ -17,4 +17,21 @@
 
 #include <linux/fs.h>
 
+extern int myfs_debug_types;
+
+#define MYFS_DEBUG_MAIN		BIT(0)
+#define MYFS_DEBUG_SUPER	BIT(1)
+#define MYFS_DEBUG_INODE	BIT(2)
+#define MYFS_DEBUG_ALL		(MYFS_DEBUG_MAIN | MYFS_DEBUG_SUPER | \
+				 MYFS_DEBUG_INODE)
+
+#define myfs_debug(type, fmt, ...)				\
+	do {							\
+		if (myfs_debug_types & MYFS_DEBUG_##type)	\
+			pr_info("[%s:%d] " fmt, __func__, __LINE__, ##__VA_ARGS__);		\
+	} while (0)
+
+
+extern struct file_system_type myfs_fs_type;
+
 #endif

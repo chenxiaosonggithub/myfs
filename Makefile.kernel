@@ -4,5 +4,5 @@
 
 obj-$(CONFIG_MYFS) += myfs.o
 
-myfs-y := super.o
+myfs-y := main.o super.o
 
