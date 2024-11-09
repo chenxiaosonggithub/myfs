@@ -15,6 +15,8 @@
 
 #include "myfs.h"
 
+#define	DBG_FACILITY	MYFS_DEBUG_SUPER
+
 static int myfs_fill_super(struct super_block *sb, void *data, int silent)
 {
 	int ret = 0;
@@ -28,7 +30,7 @@ static int myfs_fill_super(struct super_block *sb, void *data, int silent)
 
 	sb->s_root = d_make_root(root);
 	if (!sb->s_root) {
-		printk("%s:%d, error: get root inode failed", __func__, __LINE__);
+		pr_err("%s:%d, error: get root inode failed", __func__, __LINE__);
 		ret = -ENOMEM;
 		goto err;
 	}
@@ -44,7 +46,7 @@ static void myfs_kill_sb(struct super_block *sb)
 static struct dentry *myfs_mount(struct file_system_type *fs_type,
 	int flags, const char *dev_name, void *data)
 {
-	myfs_debug(SUPER, "\n");
+	myfs_debug(DBG_FACILITY, "\n");
 	return mount_bdev(fs_type, flags, dev_name, data, myfs_fill_super);
 }
 

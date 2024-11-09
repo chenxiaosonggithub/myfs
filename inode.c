@@ -15,11 +15,13 @@
 
 #include "myfs.h"
 
+#define	DBG_FACILITY	MYFS_DEBUG_INODE
+
 struct inode *myfs_iget(struct super_block *sb, unsigned long ino)
 {
 	struct inode *inode;
 
-	myfs_debug(INODE, "\n");
+	myfs_debug(DBG_FACILITY, "\n");
 	inode = iget_locked(sb, ino);
 	if (!inode)
 		return ERR_PTR(-ENOMEM);

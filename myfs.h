@@ -33,7 +33,7 @@ extern int myfs_debug_types;
 
 #define myfs_debug(type, fmt, ...)				\
 	do {							\
-		if (myfs_debug_types & MYFS_DEBUG_##type)	\
+		if (myfs_debug_types & type)	\
 			pr_info("[%s:%d] " fmt, __func__, __LINE__, ##__VA_ARGS__);		\
 	} while (0)
 

@@ -16,6 +16,8 @@
 #include <linux/sysfs.h>
 #include <linux/device/class.h>
 
+#define	DBG_FACILITY	MYFS_DEBUG_MAIN
+
 int myfs_debug_types = MYFS_DEBUG_ALL; // 开发时候调试用
 
 static const char * const debug_type_strings[] = {"main", "super", "inode"};
@@ -90,7 +92,7 @@ static int __init init_myfs(void)
 	ret = register_filesystem(&myfs_fs_type);
 	if (ret)
 		goto out;
-	myfs_debug(MAIN, "success\n");
+	myfs_debug(DBG_FACILITY, "success\n");
 	return 0;
 out:
 	class_unregister(&myfs_ctrl_class);
@@ -99,7 +101,7 @@ out:
 
 static void __exit exit_myfs(void)
 {
-	myfs_debug(MAIN, "\n");
+	myfs_debug(DBG_FACILITY, "\n");
 	class_unregister(&myfs_ctrl_class);
 	unregister_filesystem(&myfs_fs_type);
 }
