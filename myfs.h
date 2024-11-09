@@ -32,8 +32,11 @@ extern int myfs_debug_types;
 #define MYFS_DEBUG_MAIN		BIT(0)
 #define MYFS_DEBUG_SUPER	BIT(1)
 #define MYFS_DEBUG_INODE	BIT(2)
+#define MYFS_DEBUG_FILE		BIT(3)
+#define MYFS_DEBUG_DIR		BIT(4)
 #define MYFS_DEBUG_ALL		(MYFS_DEBUG_MAIN | MYFS_DEBUG_SUPER | \
-				 MYFS_DEBUG_INODE)
+				 MYFS_DEBUG_INODE | MYFS_DEBUG_FILE | \
+				 MYFS_DEBUG_DIR)
 
 #define myfs_debug(type, fmt, ...)				\
 	do {							\
@@ -43,6 +46,8 @@ extern int myfs_debug_types;
 
 
 extern struct file_system_type myfs_fs_type;
+extern const struct file_operations myfs_file_operations;
+extern const struct file_operations myfs_dir_operations;
 
 extern struct inode *myfs_iget(struct super_block *sb, unsigned long ino);
 

@@ -20,7 +20,7 @@
 
 int myfs_debug_types = MYFS_DEBUG_ALL; // 开发时候调试用
 
-static const char * const debug_type_strings[] = {"main", "super", "inode"};
+static const char * const debug_type_strings[] = {"main", "super", "inode", "file", "dir"};
 
 static ssize_t debug_show(const struct class *class,
 	const struct class_attribute *attr, char *buf)

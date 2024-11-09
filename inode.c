@@ -45,6 +45,12 @@ struct inode *myfs_iget(struct super_block *sb, unsigned long ino)
 	if (!(inode->i_state & I_NEW))
 		return inode;
 
+	if (S_ISREG(inode->i_mode)) {
+		inode->i_fop = &myfs_file_operations;
+	} else if (S_ISDIR(inode->i_mode)) {
+		inode->i_fop = &myfs_dir_operations;
+	}
+
 	unlock_new_inode(inode);
 	return inode;
 }
