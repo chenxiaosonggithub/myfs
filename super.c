@@ -48,7 +48,6 @@ static int myfs_fill_super(struct super_block *sb, void *data, int silent)
 		ret = PTR_ERR(root);
 		goto err;
 	}
-	root->i_mode = S_IFDIR | 0777; // TODO: 暂时调试
 
 	sb->s_root = d_make_root(root);
 	if (!sb->s_root) {
