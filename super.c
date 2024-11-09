@@ -14,13 +14,34 @@
  */
 
 #include "myfs.h"
+#include <linux/statfs.h>
 
 #define	DBG_FACILITY	MYFS_DEBUG_SUPER
+
+static int myfs_statfs (struct dentry * dentry, struct kstatfs * buf)
+{
+	buf->f_type = MYFS_SUPER_MAGIC;
+	buf->f_bsize = 4096;
+	buf->f_blocks = 5;
+	buf->f_bfree = 5;
+	buf->f_bavail = 5;
+	buf->f_files = 5;
+	buf->f_ffree = 5;
+	buf->f_namelen = MYFS_NAME_LEN;
+	buf->f_fsid = (__kernel_fsid_t){.val = {(u32)55, (u32)55}};
+	return 0;
+}
+
+static const struct super_operations myfs_sops = {
+	.statfs		= myfs_statfs,
+};
 
 static int myfs_fill_super(struct super_block *sb, void *data, int silent)
 {
 	int ret = 0;
 	struct inode *root;
+
+	sb->s_op = &myfs_sops;
 
 	root = myfs_iget(sb, MYFS_ROOT_INO);
 	if (IS_ERR(root)) {

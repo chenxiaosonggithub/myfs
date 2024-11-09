@@ -17,6 +17,10 @@
 
 #include <linux/fs.h>
 
+#define MYFS_SUPER_MAGIC	0x555555
+
+#define MYFS_NAME_LEN 255
+
 /*
  * Special inode numbers
  */
