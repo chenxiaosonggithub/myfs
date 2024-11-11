@@ -13,6 +13,7 @@
  *  Universite Pierre et Marie Curie (Paris VI)
  */
 
+#include <linux/module.h>
 #include "myfs.h"
 #include <linux/statfs.h>
 
@@ -78,4 +79,5 @@ struct file_system_type myfs_fs_type = {
 	.kill_sb		= myfs_kill_sb,
 	.fs_flags		= FS_REQUIRES_DEV,
 };
+MODULE_ALIAS_FS("myfs");
 
