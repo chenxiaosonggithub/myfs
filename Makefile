@@ -4,7 +4,7 @@
 #
 
 obj-m += myfs.o
-myfs-y := main.o super.o inode.o file.o dir.o
+myfs-y := main.o debug.o super.o inode.o file.o dir.o
 
 KDIR	:= /root/code/linux/x86_64-build/
 PWD	:= $(shell pwd)

@@ -48,6 +48,7 @@ extern int myfs_debug_types;
 extern struct file_system_type myfs_fs_type;
 extern const struct file_operations myfs_file_operations;
 extern const struct file_operations myfs_dir_operations;
+extern struct class myfs_ctrl_class;
 
 extern struct inode *myfs_iget(struct super_block *sb, unsigned long ino);
 
