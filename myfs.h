@@ -12,8 +12,8 @@
  *  Laboratoire MASI - Institut Blaise Pascal
  *  Universite Pierre et Marie Curie (Paris VI)
  */
-#ifndef __NFS_NETNS_H__
-#define __NFS_NETNS_H__
+#ifndef __MYFS_H__
+#define __MYFS_H__
 
 #include <linux/fs.h>
 
